@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<title>SA</title>
+	<style>
+		.navbar-brand,
+		.nav-item>a {
+			color: white !important;
+		}
+
+		.dropdown-item {
+			color: black;
+		}
+
+		.btn-circle {
+			border-radius: 1.875rem;
+		}
+
+		.func>a {
+			font-weight: bold;
+			width: 150px;
+			text-align: center;
+			margin: 1.5rem;
+		}
+
+		.information {
+			padding: 2rem;
+		}
+
+		.information>* {
+			margin-top: 1rem;
+		}
+
+		body {
+			background-color: #f3f3f3;
+		}
+
+		input::-webkit-input-placeholder {
+			/* placeholder颜色 */
+			color: #aab2bd;
+			/* placeholder字体大小 */
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">今年中於不遭央</a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+						<li class="nav-item"></li>
+						<a class="nav-link active align-middle" href="cart.html"><i class="fas fa-shopping-cart cart p-0"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="product.html">商品</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">聯繫</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								個人專區
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color: black;">
+								<li><a class="dropdown-item" href="register.html">註冊</a></li>
+								<li><a class="dropdown-item" href="login.html">登入</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+								<li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="">登出</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="header" style="padding-top: 3rem; text-align: center;">
+				<h1>忘記密碼</h1>
+				<p style="color: red;"><em>忘了密碼沒關係! 輸入信箱就好</em></p>
+			</div>
+		</div>
+		<link rel="stylesheet" type="text/css" href="forget_pwd.css" />
+		<div id="email_frame">
+			<div class="d-flex flex-column bd-highlight my-3">
+				<div class="row">
+					<p id="image_logo"><img src="running-stickman.gif" width="126" height="122"></p>
+				</div>
+				<br />
+				<!-- <form id='email-form' method="put" action="api/authen.do" class="row justify-content-center">
+						<input type="hidden" name="type" value="email">
+						<input type="hidden" name="memberid" value="8">
+						<div class="input-group mb-3">
+						  <div class="input-group-prepend">
+							<span class="input-group-text">常用信箱</span>
+						  </div>
+						  <input type="email" name="webmail" class="form-control" id="member_email" placeholder="xxx@cc.ncu.edu.tw" pattern="[a-z0-9._%+-]+@cc.ncu.edu.tw">
+						  pattern="[a-z0-9._%+-]+@cc+\.[a-z]{2,4}" -->
+				<!-- </div>
+						<div class="form-group text-center">
+							<input type="submit" id="forgetpwd-email-submmit" value="確認送出" class="btn btn-primary">
+						</div>
+					</form> -->
+				<form class="row justify-content-center checked">
+					<input type="hidden" name="type" value="resend">
+					<input type="hidden" name="memberid" value="8">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">註冊信箱</span>
+						</div>
+						<input type="email" name="webmail" id="webmail" class="form-control" placeholder="xxx@cc.ncu.edu.tw">
+					</div>
+					<div class="form-group text-center">
+						<input type="submit" value="確認送出" class="btn btn-primary" id="submit">
+					</div>
+				</form>
+				<br />
+				<p style="display: none; color:red;" id="alarm"><small>正在處理中! 請等待三到五秒鐘</small></p>
+				<p><small>若傳送成功將跳轉到登入頁面，請到信箱查收驗證信喔!</small></p>
+				<!-- <br/>
+					<br/> -->
+				<!-- <form class="row justify-content-center verify">
+						<div class="col-md-7">
+							<div class="alert alert-danger d-none" id="alert" role="alert">
+							</div>
+						</div>
+						<div class="mb-3 col-md-10 row">
+							<label for="code" class="form-label text-center">新密碼</label>
+							<input type="text" class="form-control" name="code" id="code" required>
+						</div>
+						<div class="mb-3 col-md-7 text-center">
+							<button type="submit" class="btn btn-success text-center">送出</button>
+						</div>
+					</form>
+					<p><small>查收完, 請於此輸入新密碼!</small></p> -->
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+	<script src="./statics/js/cookie.js"></script>
+	<script>
+		$(document).ready(function () {
+			const submit = document.querySelector('#submit')
+			const alarm = document.querySelector('#alarm')
+
+			var resend = new URL(location.href).searchParams.get("resend");
+			if (resend === "false") {
+				alert('驗證信寄送失敗請再試一次');
+			}
+			$('.checked').submit(function (e) {
+				var flag = "1"
+				e.preventDefault();
+				// 防止使用者重複按送出按鈕
+				submit.disabled = true
+				alarm.style.display = "inline"
+
+				var data = {
+					"webmail": $('#webmail').val(),
+					"flag": flag
+				}
+				$.ajax({
+					type: "PUT",
+					url: "api/photo.do",
+					data: JSON.stringify(data),
+					crossDomain: true,
+					cache: false,
+					dataType: 'json',
+					success: function (response) {
+						if (response.status == 200 && response.success == 1) {
+							location.href = "/NCU_MIS_SA/login.html";
+						} else if (response.status == 200 && response.success == 0) {
+							alert("查無此信箱!");
+							// 防止使用者重複按送出按鈕(完成)
+							submit.disabled = false
+							alarm.style.display = "none"
+						}
+						else if (response.status == 400) {
+							$('#alert').text(response.message);
+							$('#alert').removeClass('d-none');
+							submit.disabled = false
+						}
+					},
+					error: function () {
+						alert("無法連線到伺服器！");
+					}
+				})
+
+			})
+		})
+	</script>
+</body>
+
+</html>

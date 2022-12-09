@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>SA</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .navbar-brand,
+        .nav-item>a {
+            color: white !important;
+        }
+
+        .dropdown-item {
+            color: black;
+        }
+
+        .col-12>h1 {
+            font-weight: bold;
+        }
+
+        .box {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f3f3;
+        }
+
+        .btn-circle {
+            border-radius: 1.875rem;
+            font-weight: bold;
+            width: 130px;
+            text-align: center;
+            margin: 1rem;
+            padding: 1rem;
+            height: 3.5rem;
+            font-size: 15px;
+        }
+
+        .cart {
+            color: #fff;
+        }
+
+        .qty {
+            width: 38px;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #000;
+            background-color: transparent;
+        }
+
+        input.qtyplus,
+        input.qtyminus {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #000;
+            background-color: transparent;
+        }
+
+        form {
+            margin: 1rem;
+        }
+    </style>
+    <!-- cookie -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="./statics/js/cookie.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">今年中於不遭央</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+                        <li class="nav-item"></li>
+                        <a class="nav-link active align-middle" href="cart.html"><i
+                                class="fas fa-shopping-cart cart p-0"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="product.html">商品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">聯繫</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                個人專區
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
+                                style="color: black;">
+                                <li><a class="dropdown-item" href="register.html">註冊</a></li>
+                                <li><a class="dropdown-item" href="login.html">登入</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+                                <li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="">登出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container" style="padding: 2rem;">
+            <div class="row justify-content-center" style="padding: 2rem;">
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        const url = new URL(window.location) //url
+        const product = url.searchParams.get("id") //product_id
+        const userId = getCookie("id") // member_id
+
+        $(document).ready(function () {
+            getProduct(product)
+
+            $('.row').on('click', '.qtyplus', function (e) {
+                var t = $('.qty');
+                e.preventDefault();
+                console.log(t.val());
+                if (t.val() < $('.stock').text()) {/* 數量最大不能超過商品庫存量 */
+                    t.val(parseInt(t.val()) + 1);
+                } else {
+                    t.val();
+                }
+            })
+            $('.row').on('click', '.qtyminus', function (e) {
+                var t = $('.qty');
+                e.preventDefault();
+                if (t.val() <= 1) {    /*數量最少爲1  */
+                    t.val(1);
+                } else {
+                    t.val(parseInt(t.val()) - 1);
+                }
+            })
+            $('.row').on('click', '#addCart', function () {
+                var q = parseInt($('input[name=quantity]').val());
+                console.log(q);
+                if (q > 0 && q <= $('.stock').text()) {
+                    var dataSet = {
+                        "memberId": userId,
+                        "productId": product,
+                        "quantity": q,
+                        "bargain": "n"
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "api/cart.do",
+                        data: JSON.stringify(dataSet),
+                        crossDomain: true,
+                        cache: false,
+                        dataType: 'json',
+                        timeout: 5000,
+                        success: function (response) {
+                            if (response.status == 200) {
+                                alert('成功加入購物車');
+                                $('#addCart').text('已在購物車');
+                                console.log(response);
+                                $('#addCart').unbind("click");
+                            }
+                        },
+                        error: function () {
+                            alert("無法連線到伺服器！");
+                        }
+                    });
+                }
+                else {
+                    alert('數量必須大於0');
+                }
+            });
+        });
+
+        function getProduct(product) {
+            $.ajax({
+                type: "GET",
+                url: "api/product.do?id=" + product,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                timeout: 5000,
+                success: function (response) {
+                    if (response.status == 200) {
+                        updateHTML(response.response);
+                    }
+                    console.log(response);
+                },
+                error: function () {
+                    alert("無法連線到伺服器！");
+                }
+            });
+        }
+        function updateHTML(data) {
+            innerHtml = ''
+            innerHtml = `<div class="col-md-6 col-lg-4" style="height: 350px;">
+                    <img src="${data.src[0]}" alt="..." height="100%" style="margin:auto">
+                </div>
+                <div class="col-md-6 col-lg-8 information">
+                    <h2>${data.name}</h2>
+                    <h6>作者: <span>${data.author}</span></h6>
+                    <h6>書況: <span>${data.condition}</span></h6>
+                    <h6>庫存: <span class="stock">${data.stock_num}</span></h6>
+                    <div style="padding: 1rem; background-color: rgba(204, 204, 204, 0.5);">
+                        <h5>售價</h5>
+                        <h2 class="price-text" style="color: rgb(255, 55, 55); font-weight: bold;">${data.price}</h2>
+                    </div>
+                    <form id='myform' method='POST' action='#'>
+                        <label for="">數量：</label>
+                        <input type='button' value='-' class='qtyminus' field='quantity' />
+                        <input type='text' name='quantity' value='1' class='qty' />
+                        <input type='button' value='+' class='qtyplus' field='quantity' />
+                    </form>
+                    <div class="col-md-12 text-left">
+                        <button class="btn btn-lg btn-circle" id="addCart" style="color: white;background-color: #33691e">加入購物車</button>
+                        <a class="btn btn-lg btn-circle" href="bargain.html?id=${data.product_id}" style="color: white;background-color: #33691e">議價</a>
+                    </div>
+                </div>
+                `
+            document.querySelector(".row").innerHTML = innerHtml
+        }
+
+    </script>
+    <!-- <script>
+    
+    $('.qtyplus').click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+        var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+        if (!isNaN(currentVal)) {
+            $('input[name=' + fieldName + ']').val(currentVal + 1);
+        } else {
+    $('input[name=' + fieldName + ']').val(0);
+    });
+    $(".qtyminus").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('field');
+    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+    if (!isNaN(currentVal) && currentVal > 0) {
+        $('input[name=' + fieldName + ']').val(currentVal - 1);
+    } else {
+        $('input[name=' + fieldName + ']').val(0);
+    }
+    });
+    
+    
+        function addProduct(data) {
+            let inner_html = '';
+            inner_html += '<div class="col-md-4">';
+            inner_html += '<div class="card-header">';
+            inner_html += '<h4 class="font-weight-normal text-center text-truncate">' + data.name + '</h4>';
+            inner_html += '</div>';
+            inner_html += '<div class="card mb-4 shadow-sm">';
+            inner_html += '<img src="statics/img/product/' + data.image + '" width="100%">';
+            inner_html += '<div class="card-body">';
+            inner_html += '<h1 class="card-title pricing-card-title">$' + data.price + ' <small class="text-muted">/ USD</small></h1>';
+            inner_html += '<p class="card-text">' + data.describe + '</p>';
+            inner_html += '<div class="d-flex justify-content-between align-items-center">';
+            inner_html += '<div class="btn-group">';
+            inner_html += '<button id="add_cart_' + data.id + '" name="add_cart" type="button" class="btn btn-lg btn-block btn-outline-primary">加入購物車</button>';
+            inner_html += '</div><small class="text-muted">id: ' + data.id + '</small>';
+            inner_html += '</div></div></div></div>';
+            
+            return inner_html;
+        }
+        
+        function setButtonFunction() {
+            $('button[name="add_cart"]').click(function () {
+                var action = (this.id).split('_')[0];
+                var destination = (this.id).split('_')[1];
+                var id = (this.id).split('_')[2];
+                addProductToCart(id, 1);
+            });
+        }
+        function addProductToCart(id, amount) {
+            if (!(client_cart_obj.includes(id))) {
+                client_cart_obj.push(id);
+                client_cart_amount.push(amount);
+                updateCartDataToClent();
+            }
+            checkIfExistInCart();
+        }
+    
+        function setButtonState(id, action) {
+            if (!action) {
+                $('#' + id).prop('disabled', true);
+                $('#' + id).addClass('disabled');
+                $('#' + id).html('已加入');
+            }
+            else {
+                $('#' + id).prop('disabled', false);
+                $('#' + id).removeClass('disabled');
+                $('#' + id).html('加入購物車');
+            }
+        }
+    </script>-->
+</body>
+
+</html>

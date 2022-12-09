@@ -1,0 +1,5 @@
+/JsonReader.class
+/statics/files/*
+*.class
+.vs/*
+productInfo.xcodeproj/*

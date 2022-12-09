@@ -1,0 +1,33 @@
+/*
+body {
+    background-image: url("images/login/loginBac.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+*/
+#register_frame {
+    width: 25rem;
+    padding: 0.1rem;
+    margin: auto;
+    position: relative;
+    background-color: #9BB98B;
+    border-radius: 10px;
+    text-align: center;
+}
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+#submit {
+    font-size: 14px;
+    font-family: ����;
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: white;
+    background-color: #E84107;
+    border-radius: 6px;
+    border: 0;
+    vertical-align: middle;
+}

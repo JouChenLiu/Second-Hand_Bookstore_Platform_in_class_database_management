@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  
+  <title>SA</title>
+
+  <style>
+    .navbar-brand,
+    .nav-item>a {
+      color: white !important;
+    }
+
+    .dropdown-item {
+      color: black;
+    }
+
+    .btn-circle {
+      border-radius: 1.875rem;
+    }
+
+    .func>a {
+      font-weight: bold;
+      width: 150px;
+      text-align: center;
+      margin: 1.5rem;
+    }
+
+    .information {
+      padding: 2rem;
+    }
+
+    .information>* {
+      margin-top: 1rem;
+    }
+
+    body {
+      background-color: #f3f3f3;
+    }
+
+    .cart {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">今年中於不遭央</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+            <li class="nav-item"></li>
+            <a class="nav-link active align-middle" href="cart.html"><i class="fas fa-shopping-cart cart p-0"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="product.html">商品</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">聯繫</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                個人專區
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color: black;">
+                <li><a class="dropdown-item" href="register.html">註冊</a></li>
+                <li><a class="dropdown-item" href="login.html">登入</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+                <li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="">登出</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="row justify-content-center text-center m-2">
+      <div style="height: 50px;"></div>
+      <div class="col-12">
+        <h1><b>購物車</b></h1>
+      </div>
+    </div>
+
+    <div class="container-lg">
+      <div class="py-2">
+        <div class='row'>
+          <h3 class="mb-3">商品資訊</h3>
+          <hr class="mb-2">
+        </div>
+
+        <div class="row">
+          <div class="table-responsive">
+            <table id="cart_table" class="table table-striped table-sm">
+              <thead>
+                <tr style="font-size: 20px;">
+                  <th class="text-center" style="width: 10%">商品編號</th>
+                  <th class="text-center" style="width: 30%">商品名稱</th>
+                  <th class="text-center" style="width: 15%">單價</th>
+                  <th class="text-center" style="width: 10%">數量</th>
+                  <th class="text-center" style="width: 15%">小計</th>
+                  <th class="text-center" style="width: 10%">刪除</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="py-1"></div>
+        <div class="col-12 mb-3 p-3" style="background-color: rgba(204, 204, 204, 0.7);">
+          <h5 class="final" style="margin: auto; text-align: right;">共 <span id="row"></span> 項商品，數量 <span
+              id="count"></span> 個，總金額NT$: <span id="total"></span> 元</h5>
+        </div>
+        <div class="py-3"></div>
+
+        <div class="row">
+          <h3 class="mb-3">超商取貨資訊</h3>
+          <hr class="mb-2">
+          <div class="mb-2">
+            <label for="address" style="font-size: 20px;"><b>超商門市</b></label>
+            &nbsp;
+            <select id="address" required>
+              <option value="">請選擇全家門市</option>
+              <option value="first">中壢中央一店(松果)</option>
+              <option value="second">中壢中央二店(男九)</option>
+              <option value="third">中壢中央三店(松苑)</option>
+            </select>
+            <a style="color: red;">*必選</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 m-3" style="text-align: center;">
+      <button type="button" class="btn btn-circle" id='submit' data-bs-toggle="modal" data-bs-target="#exampleModal"
+        style="color: white;background-color: #33691e; width: 90px; height: 50px; font-size: 18px;">
+        結帳
+      </button>
+      <div class="modal fade center" id="" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 300px;">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h3>確定結帳?</h3>
+<!--                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+              <br />
+              <a>
+                <button type="button" class="btn btn-secondary" id="confirm"
+                  style="border-color: white; background-color: #33691e;" data-bs-dismiss="modal">確認</button>
+                &nbsp;
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      &nbsp;
+      <a class="btn btn-circle" href="product.html"
+        style="border-color: #33691e; width: 150px; height: 50px; font-size: 18px; padding-top: 10px;"><b>返回瀏覽商品</a>
+    </div>
+
+  </main>
+
+  <!-- <footer>
+        <div style="height: 5rem; text-align: center; padding: 1rem;">
+            <h3 style="color: #FFF; text-shadow: 0 0 4px gray;">Bookyy</h3>
+        </div>
+    </footer> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+	<script src="./statics/js/cookie.js"></script>
+
+    <script>
+      if(getCookie("type") == 1){
+        //click the button to delete the product
+        let client_cart_obj = [];
+        let client_cart_amount = [];
+        let client_cart_id = [];
+        let tbody = document.querySelector('tbody')
+        tbody.addEventListener('click', function(event) {
+          let target = event.target;
+
+          if (target.classList.contains('btn-danger')) {
+            let row = target.parentElement.parentElement;
+            var cartId = row.getAttribute('cartid');
+            console.log(cartId);
+            row.remove();
+            $.ajax({
+              type: "DELETE",
+              url: "api/cart.do?" + $.param({"id": cartId}),
+              crossDomain: true,
+              cache: false,
+              dataType: 'json',
+              timeout: 5000,
+              success: function (response) {
+                if (response.status == 200) {
+                    var data = response.response;
+                    console.log(response.response);
+                    alert("成功刪除購物車");
+                    getCart();
+                }
+              },
+              error: function () {
+                alert("無法連線到伺服器！");
+              }
+            });
+          }
+        });
+        
+        $(document).ready(function() {
+          var userid = getCookie("id");
+          var row, count, total;
+          var timer;
+          function getCart() {
+            $.ajax({
+              type: "GET",
+              url: "api/cart.do?id=" + userid,
+              crossDomain: true,
+              cache: false,
+              dataType: 'json',
+              timeout: 5000,
+              success: function (response) {
+                if (response.status == 200) {
+                    var tableContent = "";
+                    var data = response.data.data;
+                    console.log(response.data.data);
+                    client_cart_obj = [];
+                    client_cart_amount = [];
+                    client_cart_id = [];
+                    for (var i = 0; i < data.length; i++) {
+                        client_cart_obj.push(data[i].product_id)
+                        client_cart_amount.push(data[i].product_num)
+                        client_cart_id.push(data[i].id)
+                        tableContent += `<tr style="font-size: 16px;" cartid="${data[i].id}">
+                                        <td class="text-center" style="width: 10%">${data[i].product_id}</td>
+                                        <td class="text-center" style="width: 30%"><a class="nav-link" href="productInfo.html">${data[i].product_name}</a></td>
+                                        <td class="text-center" style="width: 15%">
+                                            ${data[i].product_price}
+                                        </td>
+                                        <td class="text-center number" style="width: 10%">`;
+                        if (data[i].isBargain == 'n') {
+                            tableContent += `<input class="form-control" type="number" min="1" max="${data[i].product_stock}" value="${data[i].product_num}"/>`;
+                        }
+                        else {
+                            tableContent += `<input class="form-control" type="number" value="${data[i].product_num}" readonly/>`;
+                        }
+                        tableContent += `</td>
+                                            <td class="text-center total" style="width: 15%">${data[i].product_num*data[i].product_price}</td>
+                                            <td class="text-center" style="width: 10%;"><button class="btn btn-sm btn-danger">X</button></td>
+                                        </tr>`;
+                    }
+                    $('tbody').html(tableContent);
+                    row = $('tbody > tr').length;
+                    $('#row').text(row);
+                    count = 0;
+                    total = 0;
+                    $('tbody > tr').each(function() {
+                        count += parseInt($(this).children('.number').children().val());
+                        total += parseInt($(this).children('.total').text());
+                    });
+                    $('#count').text(count);
+                    $('#total').text(total);
+                }
+              },
+              error: function () {
+                alert("無法連線到伺服器！");
+              }
+            });
+          }
+          getCart();
+          $('tbody').on('change', 'input[type=number]', function() {
+            var cartId = parseInt($(this).parent().parent().attr('cartId'));
+            var num = parseInt($(this).val());
+            var stock = $(this).attr('max');
+            if( num > stock) {
+              alert('數量不得超過庫存數量');
+              $(this).val(stock);
+            }
+            else if (num < 1) {
+              alert('數量至少需為1');
+              $(this).val(1);
+            }
+            else {
+              window.clearTimeout(timer);
+              timer = window.setTimeout(function () {
+                updateCart(cartId, num);
+              }, 600);
+            }
+          });
+          function updateCart(cartId, num) {
+            $.ajax({
+              type: "PUT",
+              url: "api/cart.do?" + $.param({"cartId": cartId, "quantity": num}),
+              crossDomain: true,
+              cache: false,
+              dataType: 'json',
+              timeout: 5000,
+              success: function (response) {
+                if (response.status == 200) {
+                  getCart();
+                }
+              },
+              error: function () {
+                alert("無法連線到伺服器！");
+              }
+            });
+          }
+      
+        //create an order => redirect to order.html
+        let confirm = document.querySelector('#confirm')
+        
+        confirm.addEventListener('click', function(event){
+          let target = event.target
+          console.log(target)
+          var dataSet = {
+            "customer_id": getCookie("id"),
+            "address": $('#address').val(),
+            "totalPrice": $('#total').text(),
+            "item": client_cart_obj,
+            "quantity": client_cart_amount,
+            "cart": client_cart_id
+          }
+
+          $.ajax({
+            type: "POST",
+            url: "api/order.do",
+            data: JSON.stringify(dataSet),
+            crossDomain: true,
+            cache: false,
+            dataType: 'json',
+            timeout: 5000,
+            success: function (response){
+              if (response.status == 200){
+                alert('已新增一筆新訂單');
+                getCart();
+              }
+            },
+            error: function (){
+              alert("無法連接到伺服器！");
+            }
+          })
+        });
+
+        // modal call
+        let submit = document.querySelector('#submit')
+        let address = document.querySelector('#address')
+        let modal = document.querySelector('.modal')
+        submit.addEventListener('click', function(event){
+            let target = event.target
+            
+            if(address.value === ''){
+                alert('請選擇全家門市');
+                return;
+            }
+            if(parseInt($('#total').text()) <= 0){
+                alert('請先添購商品再結帳');
+                return;
+            }
+          
+        });
+
+        address.addEventListener('click', function(event){
+          let target = event.target
+
+          if (address.value != '' && parseInt($('#total').text()) > 0) {
+            modal.id = 'exampleModal';
+            return;
+          }
+          
+        })
+        
+        });
+	  }else if (getCookie("type") == 3) {
+		location.href = "verify.html";
+      }else{
+        location.href = "product.html";
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
+<!--
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center bg-light">
+    <h1 class="display-4">購物車</h1>
+    <p class="lead">以下是目前存在於購物車之商品，請輸入訂單相關資訊後即可送出訂單！</p>
+  </div>
+
+  <div class="container">
+	<div class="py-5">
+	  	<div class='row'>
+		  	<div class="col-md-4 order-md-2 mb-4">
+		      <h4 class="d-flex justify-content-between align-items-center mb-3">
+		        <span class="text-muted">總計</span>
+		        <span id="date" class="badge badge-secondary badge-pill">YYYY/MM/DD</span>
+		      </h4>
+		      <ul class="list-group mb-3">
+		        <li class="list-group-item d-flex justify-content-between lh-condensed">
+		          <div>
+		            <h6 class="my-0">品項數量</h6>
+		            <small class="text-muted">Items</small>
+		          </div>
+		          <span id="total_item" class="text-muted">0</span>
+		        </li>
+		        <li class="list-group-item d-flex justify-content-between bg-light">
+		          <div class="text-success">
+		            <h6 class="my-0">產品總量</h6>
+		            <small>Quantities</small>
+		          </div>
+		          <span id="total_quantity" class="text-success">0</span>
+		        </li>
+		        <li class="list-group-item d-flex justify-content-between">
+		          <span>Total (USD)</span>
+		          <strong>$ <span id="summary">0.00</span></strong>
+		        </li>
+		      </ul>
+		      <button id="check" class="btn btn-primary btn-lg btn-block" type="button">結帳</button>
+		      <button id="clean" class="btn btn-dark btn-lg btn-block" type="button">清空購物車</button>
+		    </div>
+
+		    <div class="col-md-8 order-md-1">
+		      <h4 class="mb-3">個人資訊</h4>
+		      <hr class="mb-4">
+	        <div class="row">
+	          <div class="col-md-6 mb-2">
+	            <label for="lastName">姓</label>
+	            <input type="text" class="form-control" id="last_name" maxlength="10" value="" required>
+	          </div>
+
+	          <div class="col-md-6 mb-4">
+	            <label for="firstName">名</label>
+	            <input type="text" class="form-control" id="first_name" maxlength="10" placeholder="" value="" required>
+	          </div>
+	        </div>
+
+	        <div class="mb-3">
+	          <label for="email">Email <span class="text-muted">(Optional)</span></label>
+	          <input type="email" class="form-control" maxlength="50" id="email" placeholder="you@example.com">
+	        </div>
+
+	        <div class="mb-3">
+	          <label for="phonenum">手機號碼:</label><br/>
+	          <input id="phone" type="tel" class="form-control" maxlength="12" placeholder="09xx-xxx-xxx" required>
+	        </div>
+
+	        <div class="mb-3">
+	          <label for="address">住址</label>
+	          <input type="text" class="form-control" id="address" maxlength="255" placeholder="請輸入有效之地址！" required>
+	        </div>
+
+	        <h4 class="mb-3">商品資訊</h4>
+	        <hr class="mb-4">
+	        <div class="row">
+				    <div class="table-responsive">
+			        <table id="cart_table" class="table table-striped table-sm">
+			          <thead>
+			            <tr>
+			              <th class="text-center" style="width: 10%">商品編號</th>
+			              <th class="text-center" style="width: 30%">品名</th>
+			              <th class="text-center" style="width: 15%">單價</th>
+			              <th class="text-center" style="width: 10%">數量</th>
+			              <th class="text-center" style="width: 15%">小計</th>
+			              <th class="text-center" style="width: 10%">刪除</th>
+			            </tr>
+			          </thead>
+			          <tbody>
+			          </tbody>
+			        </table>
+			      </div>
+		      </div>
+
+	      </div>
+      </div>
+	  </div>
+  </div>
+
+  <script>
+    var [client_cart_obj, client_cart_amount]  = getCartDataFromClient();
+
+    if (client_cart_obj.length == 0) {
+    	alert("購物車沒有任何商品！");
+    	calcSummaryInformation();
+    	setButtonState("check", false);
+    }
+    else
+    	getCartProduct();
+
+    $("#check").click(function () {
+    	var data = {
+    			"first_name": $("#first_name").val(),
+    			"last_name": $("#last_name").val(),
+    			"email": $("#email").val(),
+    			"phone": $("#phone").val(),
+    			"address": $("#address").val(),
+    			"item": client_cart_obj,
+    			"quantity": client_cart_amount
+    	}
+
+    	// 驗證輸入的資料
+    	pass_vaild = vaildData(data);
+    	if (pass_vaild) {
+    		var data_string = JSON.stringify(data);
+
+    		// 發出POST的AJAX請求
+        $.ajax({
+          type: "POST",
+          url: "api/order.do",
+          data: data_string,
+          crossDomain: true,
+          cache: false,
+          dataType: 'json',
+          timeout: 5000,
+          success: function (response) {
+              if(response.status == 200){
+              	$.confirm({
+                    theme: 'modern',
+                    icon: 'fa fa-check-circle-o',
+                    type: 'green',
+                    animation: 'scale',
+                    title: '系統提醒',
+                    content: "「購物車結帳成功」，已完成新增訂單！",
+                    buttons: {
+                        確定: {
+                            text: '確定',
+                            btnClass: 'btn-blue',
+                            action: function () {
+                          	  cleanAllData();
+                              document.location.href = "order.html";
+                            }
+                        }
+                    }
+                });
+              }
+          },
+          error: function () {
+              alert("無法連線到伺服器！");
+          }
+        });
+    	}
+    });
+
+    $("#clean").click(function () {
+    	console.log("[@Action]清空購物車");
+    	cleanAllData();
+    });
+
+    function vaildData(data) {
+    	var email_rule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+    	var phone_rule = /^09\d{2}-\d{3}-\d{3}$/;
+
+    	if (data["first_name"] == "" || data["last_name"] == "" || data['phone'] == "" || data['address'] == "")  alert("必填寫欄位不得有空值！");
+    	else if (data['email'] != "" && !email_rule.test(data['email'])) alert("Email格式不符！");
+    	else if (!phone_rule.test(data['phone'])) alert("手機格式不符（應為09XX-XXX-XXX）！");
+    	else return true;
+
+    	return false;
+    }
+
+    function cleanAllData() {
+    	client_cart_obj = [];
+      client_cart_amount = [];
+      updateCartDataToClent();
+      $("#cart_table > tbody").empty();
+      $("#total_item").html('0');
+      $("#total_quantity").html('0');
+      $("#summary").html('0');
+      setButtonState("check", false);
+    }
+
+    function getCartProduct() {
+      $.ajax({
+        type: "GET",
+        url: "api/product.do",
+        crossDomain: true,
+        cache: false,
+        data: "id_list=" + client_cart_obj.toString(),
+        dataType: 'json',
+        timeout: 5000,
+        success: function (response) {
+          if (response.status == 200) {
+        	  updateCartTable(response.response.data);
+        	  updateAllQuantitySubtotal();
+        	  keyEventListen();
+        	  calcSummaryInformation();
+          }
+        },
+        error: function () {
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+    function updateAllQuantitySubtotal() {
+    	for (var i=0 ; i < client_cart_obj.length ; i++) {
+    		var id = client_cart_obj[i];
+    		var amount = client_cart_amount[i];
+    		var price = $('#price_' + id).html();
+    		$('#quantity_' + id).val(amount);
+    		var subtotal = calcSubTotal(price, amount);
+    		$('#subtotal_' + id).html(subtotal);
+    	}
+    }
+
+    function isNumberKey(evt){
+	    var charCode = (evt.which) ? evt.which : evt.keyCode
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+	    return true;
+    }
+
+    function keyEventListen() {
+    	$('input[name="quantity[]"').on(
+          'keypress',
+          function (e) {
+        	  return isNumberKey(e);
+          }
+      );
+
+    	$('input[name="quantity[]"').on(
+ 	        'keyup',
+ 	        function (e) {
+ 	        	var select = $(this).prop('id');
+ 	        	var action = select.split('_')[0];
+ 	        	var id = select.split('_')[1];
+ 	          var price = $('#price_' + id).html();
+ 	          var quantity =  $(this).val();
+ 	          var subtotal = calcSubTotal(price, quantity);
+ 	          $('#subtotal_' + id).html(subtotal);
+ 	          updateClentCartData(id, quantity);
+ 	          calcSummaryInformation();
+ 	        }
+ 	    );
+
+    	$('button[name="remove[]"').click(function () {
+    		var id = (this.id).split('_')[1];
+    		var i = client_cart_obj.indexOf(id);
+
+    		if (i > -1) {
+	    		client_cart_obj.splice(i, 1);
+	    		client_cart_amount.splice(i, 1);
+    		}
+
+    		updateCartDataToClent();
+    		$('#row_' + id).remove();
+    		if (client_cart_obj.length == 0)
+  		      alert("購物車沒有任何商品！");
+    		calcSummaryInformation();
+    	});
+
+
+    }
+
+    function calcSubTotal(price, quantity) {
+    	var result = (parseFloat(price) * parseFloat(quantity)).toFixed(2);
+    	result = isNaN(result) ? 0.00 : result;
+    	return result;
+    }
+
+    function updateCartTable(data) {
+    	table_html = '';
+    	$("#cart_table > tbody").empty();
+        $.each(data, function(index, value) {
+        	table_html += '<tr id="row_' + value.id + '">';
+        	table_html += '<td class="align-middle text-center">' + value.id + '</td>';
+        	table_html += '<td class="align-middle"><p class="text-break">' + value.name + '</p></td>';
+        	table_html += '<td class="align-middle text-center"><span id="price_' + value.id + '">' + value.price + '</td>';
+        	table_html += '<td class="align-middle text-center"><input type="input" name="quantity[]" class="input-sm form-control text-center" id="quantity_' + value.id + '" maxlength="5" min="0" step="1"></td>';
+        	table_html += '<td class="align-middle text-center"><strong><span id="subtotal_' + value.id + '"><strong></td>';
+        	table_html += '<td class="align-middle text-center"><button id="remove_' + value.id + '" name="remove[]" type="button" class="btn btn-danger">移除</button></td>';
+        	table_html += '</tr>';
+        })
+
+      $("#cart_table > tbody").append(table_html);
+    }
+
+    function getCartDataFromClient() {
+    	let cart = JSON.parse(localStorage.getItem("client_cart_obj"));
+    	let amount = JSON.parse(localStorage.getItem("client_cart_amount"));
+    	cart = !cart ? new Array() : cart;
+    	amount = !amount ? new Array() : amount;
+    	return [cart, amount];
+    }
+
+    function updateCartDataToClent() {
+    	localStorage.setItem("client_cart_obj", JSON.stringify(client_cart_obj));
+    	localStorage.setItem("client_cart_amount", JSON.stringify(client_cart_amount));
+    }
+
+    function updateClentCartData(id, quantity) {
+    	var i = client_cart_obj.indexOf(id);
+    	client_cart_amount[i] = (quantity === "") ? 0 : parseInt(quantity);
+    	updateCartDataToClent();
+    }
+
+    function calcSummaryInformation() {
+    	var total_item = client_cart_obj.length;
+    	var total_price = 0.00;
+    	var total_quantity = 0;
+
+    	for(var i=0 ; i < total_item ; i++) {
+    		var id = client_cart_obj[i];
+    		var price = $('#price_' + id).html();
+    		var quantity = $('#quantity_' + id).val()
+    		calc = parseFloat(price) * parseInt(quantity);
+    		total_price += isNaN(calc) ? 0.0 : calc;
+    		total_quantity += (isNaN(quantity) || (quantity == "")) ? 0 : parseInt(quantity);
+    	}
+
+    	// Client端日期
+    	var date = new Date();
+    	var iso_date = date.toISOString();
+
+    	$("#date").html(iso_date.substring(0, 10));
+    	$("#total_item").html(total_item);
+    	$("#total_quantity").html(total_quantity);
+    	$("#summary").html(total_price.toFixed(2));
+    }
+
+    function setButtonState(id, action) {
+      if (!action) {
+          $('#' + id).prop('disabled', true);
+          $('#' + id).addClass('disabled');
+          $('#' + id).html('請先新增商品');
+      }
+      else {
+    	  $('#' + id).prop('disabled', false);
+        $('#' + id).removeClass('disabled');
+        $('#' + id).html('結帳');
+      }
+    }
+  </script>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+      <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a
+          href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
+-->

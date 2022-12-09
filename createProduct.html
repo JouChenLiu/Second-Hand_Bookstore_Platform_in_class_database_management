@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+		integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+	<title>SA</title>
+	<style>
+		body {
+			background-color: #f3f3f3;
+		}
+
+		.navbar-brand,
+		.nav-item>a {
+			color: white !important;
+		}
+
+		.btn-circle {
+			border-radius: 1.875rem;
+			font-weight: bold;
+			width: 150px;
+			text-align: center;
+			margin: 1.5rem;
+			padding: 1rem;
+			height: 4rem;
+			font-size: 20px;
+		}
+
+		.col-12>h1 {
+			font-weight: bold;
+		}
+
+		.dropdown-item {
+			color: black;
+		}
+
+		.cart {
+			color: #fff;
+		}
+	</style>
+	<!-- js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<!-- cookie	-->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+	<script src="./statics/js/cookie.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">今年中於不遭央</a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+						<li class="nav-item"></li>
+						<a class="nav-link active align-middle" href="cart.html"><i class="fas fa-shopping-cart cart p-0"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="product.html">商品</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.html">聯繫</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								個人專區
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color: black;">
+								<li><a class="dropdown-item" href="register.html">註冊</a></li>
+								<li><a class="dropdown-item" href="login.html">登入</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+								<li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="">登出</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div style="height: 56px;"></div>
+		<div class="container">
+			<h2 style="text-align: center;margin-bottom: 3rem;">新增商品</h2>
+			<form method="POST" enctype="multipart/form-data" action="api/product.do" class="row justify-content-center">
+				<div class="col-md-7">
+					<div class="form-floating mb-3">
+						<input type="hidden" name="supplier_id" value="">
+						<input name="name" type="text" class="form-control" id="name" placeholder="書名" required>
+						<label for="name">書名</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input name="author" type="text" class="form-control" id="author" placeholder="作者" required>
+						<label for="author">作者</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input name="price" type="number" class="form-control" id="price" placeholder="價格" min="1" required>
+						<label for="price">價格</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input name="stock" type="number" class="form-control" id="stock" placeholder="庫存" min="1" required>
+						<label for="stock">庫存數量</label>
+					</div>
+					<div class="form-floating mb-3">
+						<select name="condition" class="form-select" id="condition" aria-label="book condition" required>
+							<option value="0">有劃記、有破損</option>
+							<option value="1">無劃記、有破損</option>
+							<option value="2">有劃記、無破損</option>
+							<option value="3">近全新、無劃記</option>
+						</select>
+						<label for="condition">書況</label>
+					</div>
+					<div class="form-floating mb-3">
+						<select name="bargain" class="form-select" id="bargain" aria-label="isBargain" required>
+							<option value="0">否</option>
+							<option value="1">是</option>
+						</select>
+						<label for="bargain">是否開啟議價功能</label>
+					</div>
+					<div class="mb-3">
+						<label for="files" class="form-label">商品圖片</label>
+						<input type="file" class="form-control" name="files" id="files" data-max-file-size="3MB" data-max-files="3"
+							accept="image/*" required multiple>
+					</div>
+					<div class="d-flex justify-content-center">
+						<button type="submit" class="btn btn-success text-center">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div style="height: 56px;"></div>
+	</main>
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+
+	<script>
+	if (getCookie("type") == 1 || getCookie("type") == 2) {
+		//set supplier_id
+		//userId = 1
+		$(document).ready(function () {
+			userId = getCookie("id")
+			document.querySelector("input[name=supplier_id]").value = userId
+		})
+		// userId = getCookie("id")
+		// document.querySelector("input[name=supplier_id]").value = userId
+		//document
+		$('form').submit(function (e) {
+			price = $('#price').val();
+			stock = $('#stock').val();
+			warning = "";
+			check = true;
+			if (!$.isNumeric(price) || price <= 0) {
+				warning += "輸入金額必須為大於零的整數\n";
+				check = false;
+			}
+			if (!$.isNumeric(stock) || stock <= 0) {
+				warning += "輸入庫存數量必須為大於零的整數\n";
+				check = false;
+			}
+			if (!check) {
+				e.preventDefault();
+				alert(warning);
+			}
+
+		});
+	
+	}else if (getCookie("type") == 3) {
+		location.href = "verify.html";
+	}else{
+		location.href = "product.html";
+	}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <title>SA</title>
+  <style>
+    body {
+      background-color: #f3f3f3;
+    }
+
+    .navbar-brand,
+    .nav-item>a {
+      color: white !important;
+    }
+
+    .btn-circle {
+      border-radius: 1.875rem;
+      font-weight: bold;
+      width: 150px;
+      text-align: center;
+      margin: 1.5rem;
+      padding: 1rem;
+      height: 4rem;
+      font-size: 20px;
+    }
+
+    .col-12>h1 {
+      font-weight: bold;
+    }
+
+    [slider] {
+      position: relative;
+      height: 14px;
+      border-radius: 10px;
+      text-align: left;
+      margin: 45px 0 10px 0;
+    }
+
+    [slider]>div {
+      position: absolute;
+      left: 13px;
+      right: 15px;
+      height: 14px;
+    }
+
+    [slider]>div>[inverse-left] {
+      position: absolute;
+      left: 0;
+      height: 14px;
+      border-radius: 10px;
+      background-color: #CCC;
+      margin: 0 7px;
+    }
+
+    [slider]>div>[inverse-right] {
+      position: absolute;
+      right: 0;
+      height: 14px;
+      border-radius: 10px;
+      background-color: #CCC;
+      margin: 0 7px;
+    }
+
+    [slider]>div>[range] {
+      position: absolute;
+      left: 0;
+      height: 14px;
+      border-radius: 14px;
+      background-color: #1ABC9C;
+    }
+
+    [slider]>div>[thumb] {
+      position: absolute;
+      top: -7px;
+      z-index: 2;
+      height: 28px;
+      width: 28px;
+      text-align: left;
+      margin-left: -11px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+      background-color: #FFF;
+      border-radius: 50%;
+      outline: none;
+    }
+
+    [slider]>input[type=range] {
+      position: absolute;
+      pointer-events: none;
+      -webkit-appearance: none;
+      z-index: 3;
+      height: 14px;
+      top: -2px;
+      width: 100%;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+      filter: alpha(opacity=0);
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      opacity: 0;
+    }
+
+    div[slider]>input[type=range]::-ms-track {
+      -webkit-appearance: none;
+      background: transparent;
+      color: transparent;
+    }
+
+    div[slider]>input[type=range]::-moz-range-track {
+      -moz-appearance: none;
+      background: transparent;
+      color: transparent;
+    }
+
+    div[slider]>input[type=range]:focus::-webkit-slider-runnable-track {
+      background: transparent;
+      border: transparent;
+    }
+
+    div[slider]>input[type=range]:focus {
+      outline: none;
+    }
+
+    div[slider]>input[type=range]::-ms-thumb {
+      pointer-events: all;
+      width: 28px;
+      height: 28px;
+      border-radius: 0px;
+      border: 0 none;
+      background: red;
+    }
+
+    div[slider]>input[type=range]::-moz-range-thumb {
+      pointer-events: all;
+      width: 28px;
+      height: 28px;
+      border-radius: 0px;
+      border: 0 none;
+      background: red;
+    }
+
+    div[slider]>input[type=range]::-webkit-slider-thumb {
+      pointer-events: all;
+      width: 28px;
+      height: 28px;
+      border-radius: 0px;
+      border: 0 none;
+      background: red;
+      -webkit-appearance: none;
+    }
+
+    div[slider]>input[type=range]::-ms-fill-lower {
+      background: transparent;
+      border: 0 none;
+    }
+
+    div[slider]>input[type=range]::-ms-fill-upper {
+      background: transparent;
+      border: 0 none;
+    }
+
+    div[slider]>input[type=range]::-ms-tooltip {
+      display: none;
+    }
+
+    [slider]>div>[sign] {
+      opacity: 0;
+      position: absolute;
+      margin-left: -11px;
+      top: -39px;
+      z-index: 3;
+      background-color: #1ABC9C;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 28px;
+      -webkit-border-radius: 28px;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    [slider]>div>[sign]:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      border-radius: 16px;
+      top: 19px;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top-width: 16px;
+      border-top-style: solid;
+      border-top-color: #1ABC9C;
+    }
+
+    [slider]>div>[sign]>span {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 28px;
+    }
+
+    [slider]:hover>div>[sign] {
+      opacity: 1;
+    }
+
+    .dropdown-item {
+      color: black;
+    }
+
+    .cart {
+      color: #fff;
+    }
+
+    img {
+      max-height: 400px;
+      max-width: 250px;
+    }
+  </style>
+  <!-- js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="statics/js/jquery-3.4.1.min.js"></script>
+  <script src="statics/js/jquery-confirm.js"></script>
+  <!-- cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script src="./statics/js/cookie.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">今年中於不遭央</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+            <li class="nav-item"></li>
+            <a class="nav-link active align-middle" href="cart.html"><i class="fas fa-shopping-cart cart p-0"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="product.html">商品</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">聯繫</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                個人專區
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color: black;">
+                <li><a class="dropdown-item" href="register.html">註冊</a></li>
+                <li><a class="dropdown-item" href="login.html">登入</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+                <li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="">登出</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row justify-content-center text-center m-2">
+        <div style="height: 50px;"></div>
+        <div class="col-12">
+          <h1>議價</h1>
+        </div>
+
+        <div class="col-md-12">
+          <img class="my-3" src="" alt="...">
+          <h2 id='book_name'>循環台灣</h2>
+          <h4 id="price">價格區間：0 ~ 100</h4>
+          <h4 id='FinalPrice' style="color: #33691e; font-size: 16px">
+            </h5>
+        </div>
+        <div class="col-1" style="margin: auto;">
+          <h3 class="mt-5">0</h3>
+        </div>
+        <div class="col-10 mt-3">
+          <div>
+            <div slider id="slider-distance">
+              <div>
+                <div inverse-left style="width:70%;"></div>
+                <div inverse-right style="width:70%;"></div>
+                <div range style="left:30%;right:40%;"></div>
+                <span thumb style="left:30%;"></span>
+                <span thumb style="left:60%;"></span>
+                <div sign style="left:30%;">
+                  <span id="lower_value">30</span>
+                </div>
+                <div sign style="left:60%;">
+                  <span id="upper_value">60</span>
+                </div>
+              </div>
+              <input id="low_bound" type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
+                            this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[1].style.width=value+'%';
+                            children[5].style.left=value+'%';
+                            children[7].style.left=value+'%';children[11].style.left=value+'%';
+                            children[11].childNodes[1].innerHTML=this.value;" />
+
+              <input id="up_bound" type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
+                            this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                            var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                            var children = this.parentNode.childNodes[1].childNodes;
+                            children[3].style.width=(100-value)+'%';
+                            children[5].style.right=(100-value)+'%';
+                            children[9].style.left=value+'%';children[13].style.left=value+'%';
+                            children[13].childNodes[1].innerHTML=this.value;" />
+            </div>
+          </div>
+        </div>
+        <div class="col-1" style="margin: auto;">
+          <h3 class="price mt-5">100</h3>
+        </div>
+        <button id="sendbtn" type="button" class="btn btn-circle" data-bs-toggle="modal" data-bs-target="#sendmodal"
+          style="color: white;background-color: #33691e">
+          送出
+        </button>
+        <button id="backtoproduct" class='btn btn-circle btn-outline-success' style="display:none;"
+          onclick="location.href='product.html'">
+          返回商品列
+        </button>
+        <button id="addtocart" class='btn btn-circle btn-outline-success' style="display:none;">
+          加入購物車
+        </button>
+        <!-- <input type="button" class="btn btn-circle" style="color: white;background-color: #33691e" value="送出"> -->
+        <div class="send">
+          <h5 style="color: #ca0505; font-size: 16px"></h5>
+        </div>
+        <!-- <div class="col-sm-6">
+                    <a class="btn btn-circle" href="#" style="color: white;background-color: #33691e">接受</a>
+                </div>
+                <div class="col-sm-6">
+                    <a class="btn btn-circle" href="#" style="border-color: #33691e;">拒絕</a>
+                </div> -->
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="sendmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">議價確認</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            議價區間送出後，即不能更改，確認要送出嗎?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <button type="button" id="submit" class="btn btn-primary" style="color: white;background-color: #33691e"
+              data-bs-dismiss="modal">確認送出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- <footer>
+      <div style="height: 5rem; text-align: center; padding: 1rem;">
+          <h3 style="color: #FFF; text-shadow: 0 0 4px gray;">Bookyy</h3>
+      </div>
+  </footer> -->
+
+  <script>
+    //如果不是member&supplier，看不到此頁面(議價列表)
+    if (getCookie("type") != 1 & getCookie("type") != 2) {
+      if (getCookie("type") == 3) {
+    	  alert('請先驗證會員，才可使用議價功能');
+          location.href = "verify.html";
+      }
+      //console.log(getCookie("type"))
+      alert('請先登入會員，才可使用議價功能');
+      location.href = "product.html";
+    }
+
+    // panel const
+    const pricePanel = document.querySelector('#price') //價格
+    const sliders = document.querySelector('#slider-distance')
+    const url = new URL(window.location) //url
+    const product = url.searchParams.get("id") //product_id
+    let supplier // supplier_id
+    const lb = document.querySelector('#low_bound')
+    const ub = document.querySelector('#up_bound')
+    const sendbtn = document.querySelector('#sendbtn') // 送出議價
+    const btn = document.querySelector('#submit') // 確認送出議價 in modal
+    const dataPanel = document.querySelector('.send h5') // 送出議價後，提示訊息
+    const backtoproduct = document.querySelector('#backtoproduct') // 送出議價後，返回商品btn
+    const addtocart = document.querySelector('#addtocart') // 賣家已回覆，接受議價btn
+    let BargainData // 儲存response.bargain_info
+
+    // TODO
+    // html set
+    const userId = getCookie("id")
+    function getProduct(product) {
+      $.ajax({
+        type: "GET",
+        url: "api/product.do?" + $.param({ "id": product, "customer_id": userId }),
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 5000,
+        success: function (response) {
+          // get 成功
+          if (response.status == 200) {
+            BargainData = response.bargain_info //set data
+            supplier = response.response.supplier_id //Set supplier
+            updateHTML(response.response);
+            // 已經提出過議價
+            if (response.is_bargained == 'y') {
+
+              // 已經提出過議價且賣家已回覆
+              if (BargainData.final_price != 0 || BargainData.is_rejected != 'n') {
+                if (BargainData.final_price != 0) {
+                  // 賣家提最終價 
+                  sellerReply()
+                  document.querySelector('#FinalPrice').innerHTML = '賣家已回覆你的議價請求!'
+                }
+                else {
+                  // 賣家拒絕議價
+                  isBargain()
+                  dataPanel.innerHTML = '賣家已拒絕你的議價請求!'
+                  pricePanel.innerHTML = `已拒絕`
+                }
+              }
+              // 已經提出過議價但賣家未回覆
+              else {
+                isBargain()
+                dataPanel.innerHTML = '已成功送出，待賣家給予回覆!'
+              }
+            }
+          }
+          console.log(response);
+        },
+        error: function () {
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+    getProduct(product)
+    function updateHTML(data) {
+      //TODO PRODUCTcontroller、PHOTOcontroller
+      document.querySelector('#up_bound').max = data.price
+      document.querySelector('img').src = data.src[0]
+      document.querySelector('#book_name').innerHTML = data.name
+      pricePanel.innerHTML = `價格區間：${data.price * 0.3} ~ ${data.price * 0.6}`
+      document.querySelector('.price').innerHTML = data.price
+      document.querySelector('#lower_value').innerHTML = data.price * 0.3
+      document.querySelector('#upper_value').innerHTML = data.price * 0.6
+      lb.value = data.price * 0.3
+      lb.max = data.price
+      //lb.min =
+      ub.value = data.price * 0.6
+      ub.max = data.price
+      //ub.min = 
+    }
+
+    // btn function
+    function submitButtonFunction() {
+      btn.onclick = function () {
+        isBargain() // 顯示返回按鈕、訊息
+        addBargain() // 提出議價
+        dataPanel.innerHTML = '已成功送出，待賣家給予回覆!'
+      }
+    }
+    submitButtonFunction()
+
+    function addCartButtonFunction() {
+      addtocart.onclick = function () {
+        customerAddtoCart() // 顯示返回按鈕、訊息
+        addCart() //加入購物車
+      }
+    }
+    addCartButtonFunction()
+
+    /** html  **/
+    // 已提出議價 || 已加入購物車
+    function isBargain() {
+      sendbtn.style.display = "none"
+
+      backtoproduct.style.display = "inline"
+      btn.disabled = true
+      lb.disabled = true
+      ub.disabled = true
+      document.querySelector('[slider] > div > [range]').style['background-color'] = '#ca0505'
+    }
+    // 賣家回覆最終價格
+    function sellerReply() {
+      sendbtn.style.display = "none"
+
+      addtocart.style.display = "inline"
+      pricePanel.innerHTML = `最終價格：${BargainData.final_price}`
+      btn.disabled = true
+      lb.disabled = true
+      ub.disabled = true
+      document.querySelector('[slider] > div > [range]').style['background-color'] = '#ca0505'
+    }
+    //買家接受最終價格
+    function customerAddtoCart() {
+      sendbtn.style.display = "none"
+      addtocart.style.display = "none"
+
+      backtoproduct.style.display = "inline"
+      dataPanel.innerHTML = '已加入購物車!'
+    }
+
+    // 提出議價
+    function addBargain() {
+      var customer_id = userId
+      var supplier_id = supplier
+      var product_id = product
+      var upper_limit = parseInt(ub.value, 10);
+      var lower_limit = parseInt(lb.value, 10);
+
+      // 打包成JSON
+      var data_object = {
+        "customer_id": customer_id,
+        "supplier_id": supplier_id,
+        "product_id": product_id,
+        "upper_limit": upper_limit,
+        "lower_limit": lower_limit
+      };
+
+      // 將JSON格式轉換成字串
+      var data_string = JSON.stringify(data_object);
+
+      // 議價，發出POST的AJAX請求
+      $.ajax({
+        type: "POST",
+        url: "api/bargain.do",
+        data: data_string,
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 5000,
+        success: function (response) {
+          if (response.status == 200) {
+            alert('已更新至資料庫')
+            console.log(response)
+          } else if (response.status == 201) {
+            alert('已對該商品傳送過議價')
+            console.log(response)
+          }
+        },
+        error: function () {
+          console.log(response);
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+
+    // 接受最終價格，加入購物車
+    function addCart() {
+      console.log('here');
+      var customer_id = userId
+      var product_id = product
+      var quantity = 1
+      var bargain = "y"
+      var price = BargainData.final_price
+      //console.log(typeof (lb.value))
+
+      // 打包成JSON
+      var data_object = {
+        "memberId": customer_id,
+        "productId": product_id,
+        "quantity": quantity,
+        "bargain": bargain,
+        "price": price
+      };
+
+      // 將JSON格式轉換成字串
+      var data_string = JSON.stringify(data_object);
+
+      // 加入購物車，發出POST的AJAX請求
+      $.ajax({
+        type: "POST",
+        url: "api/cart.do",
+        data: data_string,
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 5000,
+        success: function (response) {
+          if (response.status == 200) {
+            alert('已更新至資料庫')
+            console.log(response)
+          } else if (response.status == 201) {
+            alert('已對該商品傳送過議價')
+            console.log(response)
+          }
+        },
+        error: function () {
+          console.log(response);
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+
+    // value set
+    function setValueElem() {
+      let low_price = lb.value
+      let up_price = ub.value
+
+      let htmlcontent = `價格區間：${low_price} ~ ${up_price}`
+      pricePanel.innerHTML = htmlcontent
+    }
+    setValueElem()
+
+    // event listener of slider for changing up&low bound price
+    sliders.addEventListener("input", setValueElem)
+
+  </script>
+</body>
+
+</html>

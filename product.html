@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+
+  <title>商品首頁 ｜ NCU MIS SA</title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="statics/icon/favicon.ico" type="image/x-icon" rel="icon">
+  <link href="statics/icon/favicon.ico" type="image/x-icon" rel="shortcut icon"> -->
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    #carouselExampleIndicators {
+      width: auto;
+      height: 250px;
+    }
+
+    #carouselExampleIndicators1 {
+      width: auto;
+      height: 250px;
+    }
+
+    .bg-navbar {
+      background-color: #33691e;
+    }
+
+    .bg-price {
+      width: 200px;
+      height: 80px;
+      background-color: #dfdfdf;
+    }
+
+    .price-text {
+      font-size: 24px;
+      font-weight: 600;
+      color: red;
+    }
+
+    .send-product {
+      margin-top: 20px;
+    }
+
+    .send-product button {
+      border-radius: 25px;
+    }
+
+    .send-product2 button {
+      border-radius: 25px;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    body {
+      background-color: #f3f3f3;
+    }
+
+    .navbar-brand,
+    .nav-item>a {
+      color: white !important;
+    }
+
+    .dropdown-item {
+      color: black;
+    }
+
+    .cart {
+      color: #fff;
+    }
+
+    img {
+      max-height: 275px;
+      max-width: 400px;
+    }
+
+    .condition {
+      max-width: 960px;
+      background-color: #e5ecdd;
+    }
+
+    div {
+      margin: auto;
+    }
+  </style>
+  <!-- Custom styles for this template -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <!-- cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script src="./statics/js/cookie.js"></script>
+</head>
+
+<body class="bg-light">
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #33691e;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">今年中於不遭央</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
+            <li class="nav-item"></li>
+            <a class="nav-link active align-middle" href="cart.html"><i class="fas fa-shopping-cart cart p-0"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="product.html">商品</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="help.html">顧客中心</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">聯繫</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                個人專區
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color: black;">
+                <li><a class="dropdown-item" href="register.html">註冊</a></li>
+                <li><a class="dropdown-item" href="login.html">登入</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="personal.html">個人資訊</a></li>
+                <li><a class="dropdown-item" href="order.html">訂單資訊</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="">登出</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- 書況選擇-->
+  <div class="row justify-content-center text-center pt-5 px-5">
+    <form id="conditionForm" onclick="searchByCondition();">
+      <div class="condition container py-3">
+        <div class="row">
+          <div class="col-lg-2 col-sm-4 p-0">
+            按書況檢視書籍：
+          </div>
+          <div class="col-lg-2 col-sm-4 p-0 m-0">
+            <input type="radio" name="condition" value="0"> 有劃記、有破損
+          </div>
+          <div class="col-lg-2 col-sm-4 p-0 m-0">
+            <input type="radio" name="condition" value="1"> 無劃記、有破損
+          </div>
+          <div class="col-lg-auto col-sm-4 p-0 m-0">
+          </div>
+          <div class="col-lg-2 col-sm-4 p-0 m-0">
+            <input type="radio" name="condition" value="2"> 有劃記、無破損
+          </div>
+          <div class="col-lg-2 col-sm-4 p-0 m-0">
+            <input type="radio" name="condition" value="3"> 近全新、無劃記
+          </div>
+        </div>
+    </form>
+
+  </div>
+  <div class="row justify-content-center text-center">
+    <button type="button" class="btn btn-outline-success my-2" onclick="searchAllProduct();"
+      style="width:160px">顯示全部商品</button>
+  </div>
+  <!-- <form id="conditionForm">
+      　　
+      <div class="col-6 col-sm-12 col-xs-12">
+        按書況查找書籍：
+        <input type="radio" name="condition" value="c0"> 有劃記、有破損
+        <input type="radio" name="condition" value="c1"> 無劃記、有破損
+      </div>
+      <div>
+        　　　　　　　　
+        <input type="radio" name="condition" value="c2"> 有劃記、無破損
+        <input type="radio" name="condition" value="c3"> 近全新、無劃記
+      </div>
+
+    </form> -->
+
+  </div>
+
+
+  <!-- 商品區 -->
+  <div id=product_panel>
+  </div>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <script src="./statics/js/cookie.js"></script>
+  <script>
+    let target
+    var carts = [];
+    var timer;
+    let Productdata
+    if (getCookie("type") == 1) {
+      //已登入的話先確保已在購物車的商品已拿到再拿所有商品
+      getInCartProduct();
+      timer = window.setTimeout(function () {
+        getAllProduct();
+      }, 500);
+    }
+    else {
+      getAllProduct();
+    }
+
+    function getAllProduct() {
+      $.ajax({
+        type: "GET",
+        url: "api/product.do",
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 500,
+        success: function (response) {
+          console.log(response)
+          if (response.status == 200) {
+            var product_panel = '';
+            Productdata = response.response.data // 儲存product data
+            $.each(response.response.data, function () {
+              product_panel += addProduct(this);
+            })
+
+            $("#product_panel").append(product_panel);
+
+          }
+        },
+        error: function () {
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+    function searchByCondition() {
+      //console.log(event)
+      target = event.target
+      var condition = document.querySelector('form').elements.condition.value // condition number
+      var product_panel = '';
+      document.querySelector("#product_panel").innerHTML = null //清空
+      $.each(Productdata, function () {
+        product_panel += getByCondition(this, condition);
+      })
+      $("#product_panel").append(product_panel);
+    }
+
+    function searchAllProduct() {
+      target.checked = null
+      var product_panel = '';
+      document.querySelector("#product_panel").innerHTML = null //清空
+      $.each(Productdata, function () {
+        product_panel += addProduct(this);
+      })
+      $("#product_panel").append(product_panel);
+    }
+
+    function addProduct(data) {
+      let inner_html = '';
+      inner_html = `  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xl-3 d-flex justify-content-center">
+        <div id="p${data.product_info.product_id}" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">`
+
+      //加圖片(圖片數量不一樣，要分開處理)
+      for (var item in data.photo_info) {
+        if (item == 0) {
+          inner_html += `<div class="carousel-item active">`
+        }
+        else {
+          inner_html += `<div class="carousel-item">`
+        }
+        inner_html += `
+            <img src="/NCU_MIS_SA/statics/files/${data.photo_info[item].imgName}" 
+              class="d-block w-100" alt="...">
+          </div>`
+      }
+      inner_html += `  
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#p${data.product_info.product_id}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#p${data.product_info.product_id}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12 col-lg-8 col-xl-9 mt-5 ml-5">
+        <h3><a href="productInfo.html?id=${data.product_info.product_id}" target="_blank" style="text-decoration:none;color:black;font-size: 28px;">${data.product_info.name}</a></h3>
+        <p class="mt-2 mb-2">作者：<span>${data.product_info.author}</span></p>
+        <p class="mb-2">書況：<span>`
+
+      //書況
+      var condition
+      switch (`${data.product_info.condition}`) {
+        case '0': {
+          condition = '有劃記、有破損'
+          break;
+        }
+        case '1': {
+          condition = '無劃記、有破損'
+          break;
+        }
+        case '2': {
+          condition = '有劃記、無破損'
+          break;
+        }
+        case '3': {
+          condition = '近全新、無劃記'
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      inner_html += condition
+
+      inner_html += `</span ></p>
+        <div class="price pt-2 pb-2 px-2 bg-price w-100">
+          <p class="mb-1">價格</p>
+          <span class="price-text">${data.product_info.price}</span>
+        </div>
+        <div class="send-product mt-10">`;
+
+      //button
+      if (getCookie("type") == 1 && carts.indexOf(data.product_info.product_id) == -1) {
+        inner_html += `<button type="button" class="btn btn-danger px-3 mr-5 addCart" id="${data.product_info.product_id}">加入購物車</button><a class='px-3'></a>`;
+      }
+      else if (getCookie("type") == 1) {
+        inner_html += `<button type="button" class="btn btn-danger px-3 mr-5">已在購物車</button><a class='px-3'></a>`;
+      }
+      if (getCookie("type") == 1 && data.product_info.is_bargain == "y") {
+        inner_html += `<button type="button" class="btn btn-outline-danger px-5 ml-5"onclick="location.href='bargain.html?id=${data.product_info.product_id}'"> 議價</button>`;
+      }
+      inner_html += `</div></div></div></div>`;
+
+      return inner_html;
+    }
+    function getInCartProduct() {
+      var userId = getCookie("id");
+      $.ajax({
+        type: "GET",
+        url: "api/cart.do?id=" + userId,
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        timeout: 250,
+        success: function (response) {
+          console.log(response)
+          if (response.status == 200) {
+            for (var i = 0; i < response.data.data.length; i++) {
+              carts.push(response.data.data[i].product_id);
+            }
+          }
+        },
+        error: function () {
+          alert("無法連線到伺服器！");
+        }
+      });
+    }
+
+    //按書況搜尋
+    function getByCondition(data, condition) {
+      //如果condition不合則回傳空值
+      if (data.product_info.condition != condition) {
+        return ''
+      }
+
+      let inner_html = '';
+      inner_html = `  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xl-3 d-flex justify-content-center">
+        <div id="p${data.product_info.product_id}" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">`
+
+      //加圖片(圖片數量不一樣，要分開處理)
+      for (var item in data.photo_info) {
+        if (item == 0) {
+          inner_html += `<div class="carousel-item active">`
+        }
+        else {
+          inner_html += `<div class="carousel-item">`
+        }
+        inner_html += `
+            <img src="/NCU_MIS_SA/statics/files/${data.photo_info[item].imgName}" 
+              class="d-block w-100" alt="...">
+          </div>`
+      }
+      inner_html += `  
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#p${data.product_info.product_id}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#p${data.product_info.product_id}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12 col-lg-8 col-xl-9 mt-5 ml-5">
+        <h3><a href="productInfo.html?id=${data.product_info.product_id}" target="_blank" style="text-decoration:none;color:black;font-size: 28px;">${data.product_info.name}</a></h3>
+        <p class="mt-2 mb-2">作者：<span>${data.product_info.author}</span></p>
+        <p class="mb-2">書況：<span>`
+
+      //書況
+      var condition
+      switch (`${data.product_info.condition}`) {
+        case '0': {
+          condition = '有劃記、有破損'
+          break;
+        }
+        case '1': {
+          condition = '無劃記、有破損'
+          break;
+        }
+        case '2': {
+          condition = '有劃記、無破損'
+          break;
+        }
+        case '3': {
+          condition = '近全新、無劃記'
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      inner_html += condition
+
+      inner_html += `</span ></p>
+        <div class="price pt-2 pb-2 px-2 bg-price w-100">
+          <p class="mb-1">價格</p>
+          <span class="price-text">${data.product_info.price}</span>
+        </div>
+        <div class="send-product mt-10">`;
+
+      //button
+      if (getCookie("type") == 1 && carts.indexOf(data.product_info.product_id) == -1) {
+        inner_html += `<button type="button" class="btn btn-danger px-3 mr-5 addCart" id="${data.product_info.product_id}">加入購物車</button><a class='px-3'></a>`;
+      }
+      else if (getCookie("type") == 1) {
+        inner_html += `<button type="button" class="btn btn-danger px-3 mr-5">已在購物車</button><a class='px-3'></a>`;
+      }
+      if (getCookie("type") == 1 && data.product_info.is_bargain == "y") {
+        inner_html += `<button type="button" class="btn btn-outline-danger px-5 ml-5"onclick="location.href='bargain.html?id=${data.product_info.product_id}'"> 議價</button>`;
+      }
+      inner_html += `</div></div></div></div>`;
+
+      return inner_html;
+    }
+
+
+    $(document).ready(function () {
+      $('#product_panel').on('click', '.addCart', function () {
+        var product_id = parseInt($(this).attr('id'));
+        console.log(product_id);
+        var dataSet = {
+          "memberId": parseInt(getCookie("id")),
+          "productId": product_id,
+          "quantity": 1,
+          "bargain": "n"
+        };
+        $.ajax({
+          type: "POST",
+          url: "api/cart.do",
+          data: JSON.stringify(dataSet),
+          crossDomain: true,
+          cache: false,
+          dataType: 'json',
+          timeout: 750,
+          success: function (response) {
+            if (response.status == 200) {
+              alert('成功加入購物車');
+              $('#' + product_id).text('已在購物車');
+              $('#' + product_id).removeClass('addCart');
+            }
+          },
+          error: function () {
+            alert("無法連線到伺服器！");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
